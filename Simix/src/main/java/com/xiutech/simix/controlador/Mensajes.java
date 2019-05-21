@@ -36,7 +36,7 @@ public class Mensajes {
      * @param error el mensaje a mostrar
      */
     public static void error(String error) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", error));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, error, ""));
     }
      
     /**

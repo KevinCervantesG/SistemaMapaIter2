@@ -74,9 +74,14 @@ public class SessionController implements Serializable{
             context.getExternalContext().getSessionMap().put("user", u);
             return "/administrador/PerfilAdministradorIH?faces-redirect=true";
         } else if (comen != null){
-            UserLogged u = new UserLogged(comen.getNombre(),comen.getCorreo(), Rol.COMENTARISTA);
-            context.getExternalContext().getSessionMap().put("user", u);
-            return "/comentarista/PerfilComentaristaIH?faces-redirect=true";
+            if(comen.isEstado() == true) {
+                UserLogged u = new UserLogged(comen.getNombre(),comen.getCorreo(), Rol.COMENTARISTA);
+                context.getExternalContext().getSessionMap().put("user", u);
+                return "/comentarista/PerfilComentaristaIH?faces-redirect=true";
+            } else {
+                Mensajes.error("Esta cuenta fue eliminada");
+                return "";
+            }
         } else if (info != null) {
             UserLogged u = new UserLogged(info.getNombre(),info.getCorreo(), Rol.INFORMADOR);
             context.getExternalContext().getSessionMap().put("user", u);

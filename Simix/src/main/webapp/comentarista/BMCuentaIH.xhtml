@@ -32,13 +32,32 @@ and open the template in the editor.
                 
                 <aside>
                     <h:form id="form">
-                        <p:inputText  placeholder="#{bMComentaristaController.buscaPorNombre()}" type="text" id="nombre" value="#{bMComentaristaController.nombre}" required="true" requiredMessage="Ingresa un nombre"/><br/>
-                        <p:commandButton action="#{bMComentaristaController.actualizaNombre()}" value="Actualizar nombre" update=""/>
+                        <p:messages id="messages" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                        </p:messages>
+                        <p:inputText  placeholder="Nombre nuevo" type="text" id="nombre" value="#{bMComentaristaController.nombre}" /><br/>
+                        <p:password value="#{bMComentaristaController.contrasenia}"  placeholder="Contraseña nueva" /><br/>
                         
-                        <p:password value="#{bMComentaristaController.contrasenia}" required="true" requiredMessage="Ingresa una contraseña" placeholder="Contraseña nueva" /><br/>
-                        <p:commandButton action="#{bMComentaristaController.actualizaContrasenia()}" value="Actualizar contraseña" update=""/>
-
-                        <p:commandButton action="#{bMComentaristaController.borrarCuenta()}" value="Borrar Cuenta" update="" styleClass="logout"/>
+                        <p:commandButton action="#{bMComentaristaController.actualizaCuentaComen()}" value="Actualizar Cuenta" ajax="true">
+                             <p:confirm message="¿Seguro que quieres editar?" header="Aviso"/>
+                        </p:commandButton> 
+                        
+                        <p:confirmDialog global="true">               
+                            <p:commandButton value="Si" type="button" icon="ui-icon-check" styleClass="ui-confirmdialog-yes"/>                   
+                            <p:commandButton value="No" type="button" icon="ui-icon-close" styleClass="ui-confirmdialog-no"/>                                                
+                        </p:confirmDialog>
+                       
+                    </h:form>
+                    
+                    <h:form id="form2">
+                         <p:commandButton action="#{bMComentaristaController.borrarCuenta()}" value="Borrar Cuenta"  styleClass="logout" ajax="true">
+                            <p:confirm message="¿Seguro que quieres borrar tu cuenta?" header="Aviso"/>
+                        </p:commandButton>
+                        
+                        <p:confirmDialog global="true">               
+                            <p:commandButton value="Si" type="button" icon="ui-icon-check" styleClass="ui-confirmdialog-yes"/>                   
+                            <p:commandButton value="No" type="button" icon="ui-icon-close" styleClass="ui-confirmdialog-no"/>                                                
+                        </p:confirmDialog>
                     </h:form>
                     
                     
